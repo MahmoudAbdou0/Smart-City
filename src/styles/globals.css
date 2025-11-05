@@ -1,16 +1,12 @@
 @import "tailwindcss";
 /* 
 :root {
-  --gradient-gold: linear-gradient(
-    90deg,
-    var(--color-primary),
-    var(--color-olive)
-  );
-  --gradient-red: linear-gradient(
-    90deg,
-    var(--color-accent),
-    var(--color-primary)
-  );
+  --gradient-gold: linear-gradient(90deg,
+      var(--color-primary),
+      var(--color-olive));
+  --gradient-red: linear-gradient(90deg,
+      var(--color-accent),
+      var(--color-primary));
 } */
 
 @theme {
@@ -31,23 +27,28 @@
   --font-sans: "Poppins", system-ui, sans-serif;
   --font-heading: "Montserrat", sans-serif;
 
-  --gradient-gold: linear-gradient(
-    90deg,
-    var(--color-primary),
-    var(--color-olive)
-  );
-  --gradient-red: linear-gradient(
-    90deg,
-    var(--color-primary),
-    var(--color-accent)
-  );
+  --gradient-gold: linear-gradient(90deg,
+      var(--color-primary),
+      var(--color-olive));
+  --gradient-red: linear-gradient(90deg,
+      var(--color-primary),
+      var(--color-accent));
 }
 
 @layer utilities {
   .bg-gradient-gold {
     background: var(--gradient-gold);
   }
+
   .bg-gradient-red {
     background: var(--gradient-red);
   }
+
+  .container {
+    @apply mx-auto;
+  }
+}
+
+.smooth-transition {
+  @apply transition-all duration-300;
 }

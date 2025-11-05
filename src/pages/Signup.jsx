@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Button from "../components/Button";
+import Button from "../components/ButtonSubmit";
 import Input from "../components/Input";
 import BackToHome from "../components/BackToHome";
 import WelcomeMsg from "../components/WelcomeMsg";
@@ -9,7 +9,7 @@ function Signup() {
     <>
       <BackToHome />
       <WelcomeMsg msg="Let's Get Started" />
-      <form className="border border-primary-light rounded-lg max-w-sm m-auto p-6 mt-10">
+      <form className="bg-light shadow-md shadow-black/25 border border-primary-light rounded-lg max-w-sm m-auto p-6 mt-10">
         <Input label="Full Name" name="fullName" type="text" />
         <Input label="Email" name="email" type="email" />
         <Input label="Phone" name="phone" type="text" />

@@ -9,8 +9,15 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Background />
-      <RoutesConfig />
+      <div className="relative min-h-screen">
+        {/* الخلفية وراء المحتوى */}
+        <Background />
+
+        {/* المحتوى فوق الخلفية */}
+        <div className="relative z-10">
+          <RoutesConfig />
+        </div>
+      </div>
       <ReactQueryDevtools initialIsOpen={false} />
       <ToastContainer position="top-right" autoClose={3000} />
     </QueryClientProvider>
