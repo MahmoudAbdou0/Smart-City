@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import BackToHome from "../components/BackToHome";
 import WelcomeMsg from "../components/WelcomeMsg";
 
 function Login() {
   return (
     <>
+      <BackToHome />
       <WelcomeMsg msg="Welcome Back" />
       <form className="border border-primary-light rounded-lg max-w-sm m-auto p-6 mt-10">
         <Input label="National ID" name="nationalID" type="text" />

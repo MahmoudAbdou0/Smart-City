@@ -51,3 +51,7 @@
     background: var(--gradient-red);
   }
 }
+
+* {
+  user-select: none;
+}
