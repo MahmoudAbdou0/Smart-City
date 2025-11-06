@@ -18,16 +18,12 @@
   --font-sans: "Poppins", system-ui, sans-serif;
   --font-heading: "Montserrat", sans-serif;
 
-  --gradient-gold: linear-gradient(
-    90deg,
-    var(--color-primary),
-    var(--color-olive)
-  );
-  --gradient-red: linear-gradient(
-    90deg,
-    var(--color-primary),
-    var(--color-accent)
-  );
+  --gradient-gold: linear-gradient(90deg,
+      var(--color-primary),
+      var(--color-olive));
+  --gradient-red: linear-gradient(90deg,
+      var(--color-primary),
+      var(--color-accent));
 }
 
 @layer utilities {
@@ -40,7 +36,7 @@
   }
 
   .container {
-    @apply mx-auto;
+    @apply mx-auto px-4 md:px-6;
   }
 }
 
@@ -50,4 +46,36 @@
 
 .smooth-transition {
   @apply transition-all duration-300;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 280ms cubic-bezier(.22, .9, .3, 1) forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 220ms cubic-bezier(.4, .0, .2, 1) forwards;
 }

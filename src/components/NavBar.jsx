@@ -11,65 +11,95 @@ function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative flex items-center justify-between px-5 md:px-40 bg-white shadow-lg mb-5">
-      <section className="flex items-center gap-2">
-        <img
-          src="/src/assets/logo.jpeg"
-          alt="Website Logo"
-          className="w-15 md:w-20"
-        />
-        <div>
-          <p className="text-primary font-semibold text-lg md:text-xl">
-            Smart City
-          </p>
-          <p className="max-md:hidden text-sm text-gray-500">
-            Pharaonic Heritage
-          </p>
-        </div>
-      </section>
+    <div className="relative z-20">
+      <div className=" bg-white shadow-md shadow-black/10 mb-5 py-2 relative z-30">
+        <div className="container relative flex items-center justify-between ">
+          <div className="flex items-center gap-2">
+            <img
+              src="/src/assets/logo.jpeg"
+              alt="Website Logo"
+              className="w-15 md:w-20"
+            />
+            <div>
+              <p className="text-primary font-semibold text-lg md:text-xl">
+                Smart City
+              </p>
+              <p className="max-md:hidden text-sm text-gray-500">
+                Pharaonic Heritage
+              </p>
+            </div>
+          </div>
 
-      <button className="lg:hidden " onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? <X /> : <Menu />}
-      </button>
-
-      {/* Links Desktop */}
-      <nav className="hidden lg:flex">
-        <ul className="flex gap-6 text-gray-700">
-          {navItems.map((item) => (
-            <li key={item.path}>
-              <NavLink
-                to={`/${item.path}`}
-                end={item.end}
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary font-semibold "
-                    : "text-gray-700 hover:text-primary"
-                }
-              >
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <nav className="hidden lg:flex">
-        <ul className="flex gap-3 text-gray-700 cursor-pointer">
-          <li className="hover:text-primary">
+          <div className="md:hidden flex items-center gap-4 text-gray-700">
             <NavLink
               to="profile"
-              className={({ isActive }) => (isActive ? "text-primary" : "")}
+              className={({ isActive }) => `flex gap-2 items-center smooth-transition hover:scale-110 ${(isActive ? "text-primary" : "")}`}
             >
-              <User size={25} />
+              <User size={20} />
             </NavLink>
-          </li>
-          <li className="hover:text-primary">
-            <NavLink to="/login">
-              <LogOut size={25} />
+
+            <NavLink to="/login" className="smooth-transition hover:scale-110 ">
+              <LogOut size={20} />
             </NavLink>
-          </li>
-        </ul>
-      </nav>
-      {isOpen ? <MobileMenu navItems={navItems} /> : ""}
+
+            <button onClick={() => setIsOpen(!isOpen)}>
+              {
+                isOpen ?
+                  <X className="smooth-transition hover:scale-110 cursor-pointer" />
+                  :
+                  <Menu className="smooth-transition hover:scale-110 cursor-pointer" />
+              }
+            </button>
+          </div>
+
+          {/* Links Desktop */}
+          <nav className="hidden md:flex">
+            <ul className="flex gap-6 text-gray-700">
+              {navItems.map((item) => (
+                <li key={item.path}>
+                  <NavLink
+                    to={`/${item.path}`}
+                    end={item.end}
+                    className={({ isActive }) => `smooth-transition ${isActive
+                      ? "text-primary font-semibold"
+                      : "text-gray-700 hover:text-primary"
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav className="hidden md:flex">
+            <ul className="flex items-center gap-3 text-gray-700 cursor-pointer">
+              <li className="hover:text-primary">
+                <NavLink
+                  to="profile"
+                  className={({ isActive }) => `smooth-transition ${(isActive ? "text-primary" : "")}`}
+                >
+                  <User size={20} />
+                </NavLink>
+              </li>
+              <li className="hover:text-primary">
+                <NavLink to="/login">
+                  <LogOut size={20} />
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div >
+
+      {/* ✅ Mobile Menu تحت النافبار باستخدام z-index */}
+      <div
+        className={`absolute left-0 top-full w-full z-10 
+    ${isOpen ? "animate-slideDown opacity-100 pointer-events-auto" : "animate-slideUp opacity-0 pointer-events-none"}`}
+        aria-hidden={!isOpen}
+      >
+        <MobileMenu navItems={navItems} />
+      </div>
     </div>
   );
 }
@@ -78,44 +108,25 @@ export default NavBar;
 
 function MobileMenu({ navItems }) {
   return (
-    <div className="absolute bg-white w-full top-full left-0 flex flex-col py-5 px-8">
-      <nav className="lg:hidden flex">
-        <ul className="flex flex-col gap-6 text-gray-700">
+    <div className="shadow-md shadow-black/10 rounded-b-xl bg-white w-[90%] mx-auto top-full flex flex-col py-5 px-5 md:hidden">
+      <nav className="md:hidden block text-gray-700">
+        <ul className="flex flex-col w-full gap-3">
           {navItems.map((item) => (
-            <li key={item.path}>
-              <NavLink
-                to={`/${item.path}`}
-                end={item.end}
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary font-semibold "
-                    : "text-gray-700 hover:text-primary"
-                }
-              >
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <nav className="lg:hidden flex my-5 w-full">
-        <ul className="flex gap-3 text-gray-700 cursor-pointer w-full">
-          <li className="hover:text-primary flex flex-1 ">
             <NavLink
-              to="profile"
-              className={({ isActive }) =>
-                isActive ? "text-primary flex " : "flex"
+              key={item.path}
+              to={`/${item.path}`}
+              end={item.end}
+              className={({ isActive }) => ` block px-4 py-2 rounded-xl smooth-transition ${isActive
+                ? "bg-primary-light/25 text-primary font-semibold"
+                : "text-gray-700 hover:text-primary hover:bg-primary-light/10"
+                }`
               }
             >
-              <User size={25} /> Profile
+              {item.label}
             </NavLink>
-          </li>
-          <li className="hover:text-primary flex flex-1 border border-primary-light rounded p-2">
-            <NavLink to="/login" className="flex gap-2">
-              <LogOut size={25} /> Logout
-            </NavLink>
-          </li>
+          ))}
         </ul>
+
       </nav>
     </div>
   );
