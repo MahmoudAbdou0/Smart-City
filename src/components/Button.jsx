@@ -7,18 +7,18 @@ const buttonStyle = {
   gradient:
     "bg-gradient-red border-gradient-red  rounded-xl  text-light  hover:opacity-80 ",
 };
-function Button({ children, style, type, to }) {
+function Button({ children, style, type, to, className = "" }) {
   if (type === "submit")
     return (
       <button
         type={type}
-        className={`${buttonStyle.main} ${buttonStyle[style]} w-full`}
+        className={`${buttonStyle.main} ${buttonStyle[style]} ${className} w-full`}
       >
         {children}
       </button>
     );
   return (
-    <Link to={to} className={`${buttonStyle.main} ${buttonStyle[style]} `}>
+    <Link to={to} className={`${buttonStyle.main} ${buttonStyle[style]} ${className} `}>
       {children}
     </Link>
   );
