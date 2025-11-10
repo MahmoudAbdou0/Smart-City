@@ -6,7 +6,7 @@ const Background = () => {
                     width="100%"
                     height="100%"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-full h-full opacity-5"
+                    className="w-full h-full opacity-10"
                     preserveAspectRatio="xMinYMin slice"
                 >
                     <defs>

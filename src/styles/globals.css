@@ -38,15 +38,27 @@
   .container {
     @apply mx-auto px-4 md:px-2;
   }
+
+  .smooth-transition {
+    @apply transition-all duration-300;
+  }
+
+  .border-color {
+    @apply border-accent-light/20;
+  }
+
+  .border-color:hover {
+    border-color: rgb(209, 169, 99);
+  }
 }
 
 * {
   user-select: none;
 }
 
-.smooth-transition {
-  @apply transition-all duration-300;
-}
+
+
+
 
 @keyframes slideDown {
   0% {
