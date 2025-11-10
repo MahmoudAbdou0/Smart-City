@@ -1,13 +1,17 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
+import GlobalPreloader from "../../../components/GlobalPreloader";
 
 function UserPortal() {
   return (
     <>
       <NavBar />
-      <main className="md:mx-40 px-5">
-        <Outlet />
-      </main>
+
+      <GlobalPreloader>
+        <main className="container">
+          <Outlet />
+        </main>
+      </GlobalPreloader>
     </>
   );
 }

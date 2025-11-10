@@ -14,12 +14,19 @@ import UserComplaints from "./features/users/pages/UserComplaints";
 import AdminComplaints from "./features/admin/pages/AdminComplaints";
 import UserProfile from "./features/users/pages/UserProfile";
 import AdminProfile from "./features/admin/pages/AdminProfile";
+import GlobalPreloader from "./components/GlobalPreloader";
 
 function RoutesConfig() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Home />} />
+        <Route index
+          element={
+            <GlobalPreloader>
+              <Home />
+            </GlobalPreloader>
+          }
+        />
         {/* Routes For Admin */}
         <Route path="/admin" element={<AdminPortal />}>
           <Route index element={<AdminDashboard />} />
@@ -36,8 +43,8 @@ function RoutesConfig() {
           <Route path="notifications" element={<Notifications />} />
           <Route path="profile" element={<UserProfile />} />
         </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Signup />} />
+        <Route path="login" element={<GlobalPreloader><Login /></GlobalPreloader>} />
+        <Route path="register" element={<GlobalPreloader><Signup /></GlobalPreloader>} />
       </Routes>
     </BrowserRouter>
   );
