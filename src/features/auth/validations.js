@@ -1,6 +1,6 @@
 export const validations = {
-  fullName: {
-    required: "Full Name is required",
+  name: {
+    required: "Name is required",
     minLength: { value: 3, message: "Must be at least 3 characters" },
   },
 
@@ -26,7 +26,7 @@ export const validations = {
     maxLength: { value: 100, message: "Must be less than 100" },
   },
 
-  nationalID: {
+  nationalId: {
     required: "National ID is required",
     pattern: {
       value: /^[0-9]{14}$/,
@@ -46,7 +46,7 @@ export const validations = {
     },
     pattern: {
       // requires at least one uppercase, one lowercase, one number
-      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,32}$/,
+      value: /^(?=.*[a-z])(?=.*\d).{8,32}$/,
       message: "Password must contain uppercase, lowercase, and a number",
     },
   },

@@ -15,12 +15,15 @@ import AdminComplaints from "./features/admin/pages/AdminComplaints";
 import UserProfile from "./features/users/pages/UserProfile";
 import AdminProfile from "./features/admin/pages/AdminProfile";
 import GlobalPreloader from "./components/GlobalPreloader";
+import AdminProtectedRoute from "./AdminProtectedRoute";
+import ProtectedRoute from "./ProtectedRoute";
 
 function RoutesConfig() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index
+        <Route
+          index
           element={
             <GlobalPreloader>
               <Home />
@@ -28,7 +31,14 @@ function RoutesConfig() {
           }
         />
         {/* Routes For Admin */}
-        <Route path="/admin" element={<AdminPortal />}>
+        <Route
+          path="/admin"
+          element={
+            <AdminProtectedRoute>
+              <AdminPortal />
+            </AdminProtectedRoute>
+          }
+        >
           <Route index element={<AdminDashboard />} />
           <Route path="users" element={<Users />} />
           <Route path="complaints" element={<AdminComplaints />} />
@@ -36,15 +46,36 @@ function RoutesConfig() {
           <Route path="profile" element={<AdminProfile />} />
         </Route>
         {/* Routes For Users */}
-        <Route path="/dashboard" element={<UserPortal />}>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <UserPortal />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<UserDashboard />} />
           <Route path="complaints" element={<UserComplaints />} />
           <Route path="utilities" element={<Utilities />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="profile" element={<UserProfile />} />
         </Route>
-        <Route path="login" element={<GlobalPreloader><Login /></GlobalPreloader>} />
-        <Route path="register" element={<GlobalPreloader><Signup /></GlobalPreloader>} />
+        <Route
+          path="login"
+          element={
+            <GlobalPreloader>
+              <Login />
+            </GlobalPreloader>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <GlobalPreloader>
+              <Signup />
+            </GlobalPreloader>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

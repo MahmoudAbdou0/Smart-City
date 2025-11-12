@@ -5,8 +5,11 @@ import BackToHome from "../components/BackToHome";
 import WelcomeMsg from "../components/WelcomeMsg";
 import { useForm } from "react-hook-form";
 import { validations } from "../features/auth/validations";
+import { useRegister } from "../features/auth/useRegister";
+import SpinnerMini from "../components/SpinnerMini";
 
 function Signup() {
+  const { mutate, isLoading } = useRegister();
   const {
     register,
     handleSubmit,
@@ -14,8 +17,12 @@ function Signup() {
     watch,
   } = useForm();
 
+  const loading = isLoading || isSubmitting;
+
   function onSubmit(data) {
-    console.log(data);
+    // console.log(data);
+
+    mutate(data);
   }
   return (
     <>
@@ -26,12 +33,12 @@ function Signup() {
         className="bg-light shadow-md shadow-black/25 border border-primary-light rounded-lg max-w-sm m-auto p-6 mt-10"
       >
         <Input
-          label="Full Name"
-          name="fullName"
+          label="Name"
+          name="name"
           type="text"
           register={register}
-          options={validations.fullName}
-          error={errors?.fullName?.message}
+          options={validations.name}
+          error={errors?.name?.message}
         />
         <Input
           label="Email"
@@ -59,11 +66,11 @@ function Signup() {
         />
         <Input
           label="National ID"
-          name="nationalID"
+          name="nationalId"
           type="text"
           register={register}
-          options={validations.nationalID}
-          error={errors?.nationalID?.message}
+          options={validations.nationalId}
+          error={errors?.nationalId?.message}
         />
         <Input
           label="Password"
@@ -81,8 +88,8 @@ function Signup() {
           options={validations.confirmPassword(watch)}
           error={errors?.confirmPassword?.message}
         />
-        <Button style="gradient" type="submit">
-          Sign Up &rarr;
+        <Button disabled={loading} style="gradient" type="submit">
+          {loading ? <SpinnerMini /> : <span>Sign Up &rarr;</span>}
         </Button>
         <p className="text-sm text-center">
           Have an account?{" "}

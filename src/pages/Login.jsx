@@ -5,16 +5,21 @@ import BackToHome from "../components/BackToHome";
 import WelcomeMsg from "../components/WelcomeMsg";
 import { useForm } from "react-hook-form";
 import { validations } from "../features/auth/validations";
+import { useLogin } from "../features/auth/useLogin";
+import SpinnerMini from "../components/SpinnerMini";
 
 function Login() {
+  const { mutate, isLoading } = useLogin();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm();
 
-  function onSubmit(data) {
-    console.log(data);
+  const loading = isLoading || isSubmitting;
+
+  async function onSubmit(data) {
+    mutate(data);
   }
   return (
     <>
@@ -26,11 +31,11 @@ function Login() {
       >
         <Input
           label="National ID"
-          name="nationalID"
+          name="nationalId"
           type="text"
           register={register}
-          options={validations.nationalID}
-          error={errors?.nationalID?.message}
+          options={validations.nationalId}
+          error={errors?.nationalId?.message}
         />
         <Input
           label="Password"
@@ -40,11 +45,12 @@ function Login() {
           options={validations.password}
           error={errors?.password?.message}
         />
-        <Link to="#" className="text-primary text-sm underline">
+        {/* <Link to="#" className="text-primary text-sm underline">
           Forgot Password?
-        </Link>
-        <Button style="gradient" type="submit">
-          Sign In &rarr;
+        </Link> */}
+        <Button disabled={loading} style="gradient" type="submit">
+          {loading ? <SpinnerMini /> : <span>Sign In &rarr;</span>}
+          {/* <SpinnerMini /> */}
         </Button>
         <p className="text-sm text-center">
           Don't have an account?{" "}
