@@ -37,8 +37,7 @@ function NavBar() {
             <NavLink
               to="profile"
               className={({ isActive }) =>
-                `flex gap-2 items-center smooth-transition hover:scale-110 ${
-                  isActive ? "text-primary" : ""
+                `flex gap-2 items-center smooth-transition hover:scale-110 ${isActive ? "text-primary" : ""
                 }`
               }
             >
@@ -64,17 +63,16 @@ function NavBar() {
 
           {/* Links Desktop */}
           <nav className="hidden md:flex">
-            <ul className="flex gap-6 text-gray-700">
+            <ul className="flex gap-8 text-gray-700">
               {navItems.map((item) => (
                 <li key={item.path}>
                   <NavLink
                     to={`/${item.path}`}
                     end={item.end}
                     className={({ isActive }) =>
-                      `smooth-transition ${
-                        isActive
-                          ? "text-primary font-semibold"
-                          : "text-gray-700 hover:text-primary"
+                      `smooth-transition ${isActive
+                        ? "text-primary font-semibold"
+                        : "text-gray-700 hover:text-primary"
                       }`
                     }
                   >
@@ -109,11 +107,10 @@ function NavBar() {
       {/* ✅ Mobile Menu تحت النافبار باستخدام z-index */}
       <div
         className={`absolute left-0 top-full w-full z-10 
-    ${
-      isOpen
-        ? "animate-slideDown opacity-100 pointer-events-auto"
-        : "animate-slideUp opacity-0 pointer-events-none"
-    }`}
+    ${isOpen
+            ? "animate-slideDown opacity-100 pointer-events-auto"
+            : "animate-slideUp opacity-0 pointer-events-none"
+          }`}
         aria-hidden={!isOpen}
       >
         <MobileMenu navItems={navItems} />
@@ -135,10 +132,9 @@ function MobileMenu({ navItems }) {
               to={`/${item.path}`}
               end={item.end}
               className={({ isActive }) =>
-                ` block px-4 py-2 rounded-xl smooth-transition ${
-                  isActive
-                    ? "bg-primary-light/25 text-primary font-semibold"
-                    : "text-gray-700 hover:text-primary hover:bg-primary-light/10"
+                ` block px-4 py-2 rounded-xl smooth-transition ${isActive
+                  ? "bg-primary-light/25 text-primary font-semibold"
+                  : "text-gray-700 hover:text-primary hover:bg-primary-light/10"
                 }`
               }
             >

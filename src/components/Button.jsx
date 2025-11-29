@@ -12,11 +12,11 @@ function Button({
   style,
   type,
   to,
-  className = "",
+  className = "button",
   disabled,
   onClick,
 }) {
-  if (type === "submit")
+  if (type === "submit") {
     return (
       <button
         disabled={disabled}
@@ -27,14 +27,30 @@ function Button({
         {children}
       </button>
     );
+  }
+
+  if (to) {
+    return (
+      <Link
+        to={to}
+        onClick={onClick}
+        className={`${buttonStyle.main} ${buttonStyle[style]} ${className} `}
+      >
+        {children}
+      </Link>
+    );
+  }
+
+  // لو مفيش to → Button عادي
   return (
-    <Link
-      to={to}
+    <button
+      type={type}
       onClick={onClick}
-      className={`${buttonStyle.main} ${buttonStyle[style]} ${className} `}
+      disabled={disabled}
+      className={`${buttonStyle.main} ${buttonStyle[style]} ${className}`}
     >
       {children}
-    </Link>
+    </button>
   );
 }
 

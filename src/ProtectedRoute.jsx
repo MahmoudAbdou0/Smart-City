@@ -6,9 +6,9 @@ export default function ProtectedRoute({ children }) {
 
   if (loading) return null;
 
-  if (!user || !token || user.role === "Admin") {
-    return <Navigate to="/login" replace />;
-  }
+  // if (!user || !token || user.role === "Admin") {
+  //   return <Navigate to="/login" replace />;
+  // }
 
   return children;
 }

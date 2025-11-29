@@ -6,9 +6,9 @@ export default function AdminProtectedRoute({ children }) {
 
   if (loading) return null;
 
-  if (!user || !token || user.role === "Citizen") {
-    return <Navigate to="/login" replace />;
-  }
+  // if (!user || !token || user.role === "Citizen") {
+  //   return <Navigate to="/login" replace />;
+  // }
 
   return children;
 }
