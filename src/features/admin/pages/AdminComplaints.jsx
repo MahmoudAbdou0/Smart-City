@@ -3,6 +3,7 @@ import ComplaintsTable from "../components/complaints/ComplaintsTable";
 import ComplaintModal from "../components/complaints/ComplaintModal";
 import { MessageSquareWarning } from "lucide-react";
 import GlobalPreloader from "../../../components/GlobalPreloader";
+import api from "../../../services/axiosInterceptors";
 
 const AdminComplaints = () => {
 
@@ -11,63 +12,60 @@ const AdminComplaints = () => {
   const [selectedComplaint, setSelectedComplaint] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // بيانات تجريبية (سيتم استبدالها بالـ API)
-  const demoComplaints = [
-    {
-      id: 1,
-      title: "إصلاح إنارة الشارع",
-      description: "الإنارة في شارع المدينة معطلة منذ أسبوع مما يسبب مشاكل للمارة ليلاً",
-      location: "شارع المدينة - حي النور",
-      imageUrl: "https://images.unsplash.com/photo-1517400508447-f8dd5186e3f0?w=400",
-      status: "Pending",
-      citizenId: "20304020304050"
-    },
-    {
-      id: 2,
-      title: "مشكلة في الصرف الصحي",
-      description: "انسداد في مجاري الصرف الصحي في المنطقة السكنية مما يسبب روائح كريهة",
-      location: "حي الأندلس - شارع السلام",
-      imageUrl: "https://images.unsplash.com/photo-1581093458791-8a6b22bb90e7?w=400",
-      status: "In Progress",
-      date: "2023-10-14",
-      citizenId: "20304020304051"
-    },
-    {
-      id: 3,
-      title: "حفر في الطريق",
-      description: "وجود حفر كبيرة في الطريق الرئيسي تشكل خطراً على المركبات",
-      location: "الطريق الدائري - مخرج 5",
-      imageUrl: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400",
-      status: "Resolved",
-      date: "2023-10-10",
-      citizenId: "20304020304052"
-    },
-    {
-      id: 4,
-      title: "نفايات متراكمة",
-      description: "تراكم النفايات في الحاويات المخصصة لأكثر من 3 أيام",
-      location: "حي الزهور - مقابل المسجد",
-      imageUrl: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=400",
-      status: "Pending",
-      date: "2023-10-12",
-      citizenId: "20304020304053"
-    }
-  ];
-  // محاكاة جلب البيانات من API
+  //demo data
+  // const demoComplaints = [
+  //   {
+  //     id: 1,
+  //     title: "إصلاح إنارة الشارع",
+  //     description: "الإنارة في شارع المدينة معطلة منذ أسبوع مما يسبب مشاكل للمارة ليلاً",
+  //     location: "شارع المدينة - حي النور",
+  //     imageUrl: "https://images.unsplash.com/photo-1517400508447-f8dd5186e3f0?w=400",
+  //     status: "Pending",
+  //     citizenId: "20304020304050"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "مشكلة في الصرف الصحي",
+  //     description: "انسداد في مجاري الصرف الصحي في المنطقة السكنية مما يسبب روائح كريهة",
+  //     location: "حي الأندلس - شارع السلام",
+  //     imageUrl: "https://images.unsplash.com/photo-1581093458791-8a6b22bb90e7?w=400",
+  //     status: "In Progress",
+  //     date: "2023-10-14",
+  //     citizenId: "20304020304051"
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "حفر في الطريق",
+  //     description: "وجود حفر كبيرة في الطريق الرئيسي تشكل خطراً على المركبات",
+  //     location: "الطريق الدائري - مخرج 5",
+  //     imageUrl: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400",
+  //     status: "Resolved",
+  //     date: "2023-10-10",
+  //     citizenId: "20304020304052"
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "نفايات متراكمة",
+  //     description: "تراكم النفايات في الحاويات المخصصة لأكثر من 3 أيام",
+  //     location: "حي الزهور - مقابل المسجد",
+  //     imageUrl: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=400",
+  //     status: "Pending",
+  //     date: "2023-10-12",
+  //     citizenId: "20304020304053"
+  //   }
+  // ];
+  //  جلب البيانات من API
   const fetchComplaints = async () => {
     setLoading(true);
     try {
-      // TODO: استبدال هذا الجزء بالـ API الحقيقي عند توافره
-      // const response = await fetch('http://smartcity.tryasp.net/api/complaints');
-      // const data = await response.json();
+      const response = await api.get('/api/admin/complaints');
+      const data = response.data;
 
-      // محاكاة تأخير الشبكة
-      await new Promise(resolve => setTimeout(resolve, 400));
+      console.log(data);
+      setComplaints(data);
 
-      // استخدام البيانات التجريبية مؤقتاً
-      setComplaints(demoComplaints);
     } catch (error) {
-      console.error('Error fetching complaints:', error);
+      console.warn('Using demo data due to API error:', error.message);
     } finally {
       setLoading(false);
     }

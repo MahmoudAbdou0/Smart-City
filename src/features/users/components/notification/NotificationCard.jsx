@@ -1,6 +1,5 @@
 // components/NotificationCard.jsx
 
-import { useState } from "react";
 
 const NotificationCard = ({ notification, onMarkRead }) => {
     const [isRead, setIsRead] = useState(notification.read);
