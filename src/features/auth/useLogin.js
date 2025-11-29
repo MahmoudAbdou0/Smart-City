@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { login as loginApi } from "../../services/apiAuth";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export function useLogin() {
   const navigate = useNavigate();
@@ -10,13 +11,14 @@ export function useLogin() {
     mutationFn: loginApi,
     onSuccess: (data) => {
       console.log("Login successful: ", data);
-      login(data.user, data.token);
+      login(data?.user, data?.token);
       navigate(data?.user?.role === "Citizen" ? "/dashboard" : "/admin", {
         replace: true,
       });
     },
     onError: (error) => {
-      // console.log(error);
+      console.log(error.message);
+      toast.error("Error: " + error.message);
       console.error("Error:", error?.response?.data || error.message);
     },
   });

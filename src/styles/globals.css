@@ -18,12 +18,16 @@
   --font-sans: "Poppins", system-ui, sans-serif;
   --font-heading: "Montserrat", sans-serif;
 
-  --gradient-gold: linear-gradient(90deg,
-      var(--color-primary),
-      var(--color-olive));
-  --gradient-red: linear-gradient(90deg,
-      var(--color-primary),
-      var(--color-accent));
+  --gradient-gold: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-olive)
+  );
+  --gradient-red: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
 }
 
 @layer utilities {
@@ -36,7 +40,8 @@
   }
 
   .container {
-    @apply mx-auto px-4 md:px-2;
+    @apply mx-auto px-4 md:px-10;
+    /* @apply mx-auto px-2 md:px-10 xl:px-20; */
   }
 
   .smooth-transition {
@@ -95,9 +100,9 @@
 }
 
 .animate-slideDown {
-  animation: slideDown 280ms cubic-bezier(.22, .9, .3, 1) forwards;
+  animation: slideDown 280ms cubic-bezier(0.22, 0.9, 0.3, 1) forwards;
 }
 
 .animate-slideUp {
-  animation: slideUp 220ms cubic-bezier(.4, .0, .2, 1) forwards;
+  animation: slideUp 220ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
