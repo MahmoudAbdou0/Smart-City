@@ -1,4 +1,3 @@
-import React from 'react';
 import Select from 'react-select';
 import { Clock, RefreshCw, Check, Lock } from 'lucide-react';
 
@@ -9,6 +8,7 @@ const StatusSelect = ({ complaint, onUpdateStatus }) => {
             case 'In Progress': return 'border-blue-300';
             case 'Resolved': return 'border-green-300';
             case 'Closed': return 'border-gray-300';
+            case 'Rejected': return 'border-red-300';
             default: return 'border-gray-300';
         }
     };
@@ -33,6 +33,11 @@ const StatusSelect = ({ complaint, onUpdateStatus }) => {
             value: 'Closed',
             label: 'Closed',
             color: 'gray'
+        },
+        {
+            value: 'Rejected',
+            label: 'Rejected',
+            color: 'red'
         }
     ];
     const customOptions = statusOptions.map(option => ({
@@ -75,6 +80,7 @@ const getStatusIcon = (status) => {
         case 'In Progress': return <RefreshCw className="w-4 h-4 text-blue-600" />;
         case 'Resolved': return <Check className="w-4 h-4 text-green-600" />;
         case 'Closed': return <Lock className="w-4 h-4 text-gray-600" />;
+        case 'Rejected': return <Lock className="w-4 h-4 text-red-600" />;
         default: return <Clock className="w-4 h-4 text-gray-600" />;
     }
 };

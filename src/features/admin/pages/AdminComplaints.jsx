@@ -61,27 +61,54 @@ const AdminComplaints = () => {
       const response = await api.get('/api/admin/complaints');
       const data = response.data;
 
-      console.log(data);
-      setComplaints(data);
+      // ✅ تحويل كامل للحالات
+      const statusMap = {
+        0: 'Pending',
+        1: 'In Progress',
+        2: 'Resolved',
+        3: 'Rejected'
+      };
+
+      // تحديث البيانات لتعيين الحالة الافتراضية
+      const updatedData = data.map(complaint => ({
+        ...complaint,
+        status: statusMap[complaint.status] || 'Pending', // تحويل الرقم لنص
+        dateSubmitted: complaint.dateSubmitted || 'N/A'
+      }));
+
+      console.log('📦 Complaints Data:', updatedData); // طباعة البيانات المحدثة
+      setComplaints(updatedData); // تحديث الحالة المحلية
 
     } catch (error) {
-      console.warn('Using demo data due to API error:', error.message);
+      console.error('❌ API Error:', error);
     } finally {
       setLoading(false);
     }
   };
 
-  // دالة لتحديث حالة الشكوى
   const updateComplaintStatus = async (complaintId, newStatus) => {
     try {
-      // TODO: Replace with actual API call
-      // await fetch(`http://smartcity.tryasp.net/api/complaints/${complaintId}`, {
-      //   method: 'PUT',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ status: newStatus })
-      // });
+      const statusMapping = {
+        'Pending': 0,
+        'In Progress': 1,
+        'Resolved': 2,
+        'Rejected': 3
+      };
 
-      // Update local state temporarily
+      const statusValue = statusMapping[newStatus]; // تحويل النص إلى القيمة الصحيحة
+      console.log('Sending data:', { status: statusValue, updatedComplaint: true });
+
+      await api.put(`/api/admin/complaints/${complaintId}`, {
+        status: statusValue,
+        updatedComplaint: true // إضافة الحقل المطلوب
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      console.log(`Complaint with ID ${complaintId} updated successfully to status: ${newStatus}`);
+
       setComplaints(prev => prev.map(comp =>
         comp.id === complaintId ? { ...comp, status: newStatus } : comp
       ));
@@ -90,13 +117,18 @@ const AdminComplaints = () => {
         setSelectedComplaint(prev => ({ ...prev, status: newStatus }));
       }
     } catch (error) {
-      console.error('Error updating status:', error);
+      console.error('Error updating status:', error.response?.data || error.message);
     }
   };
 
   const deleteComplaint = async (complaintId) => {
     if (window.confirm('Are you sure you want to delete this complaint?')) {
       try {
+        // حذف الشكوى من الـ backend
+        await api.delete(`/api/admin/complaints/${complaintId}`);
+        console.log(`Complaint with ID ${complaintId} deleted successfully`);
+
+        // تحديث الحالة المحلية
         setComplaints(prev => prev.filter(comp => comp.id !== complaintId));
         if (selectedComplaint?.id === complaintId) {
           closeModal();
