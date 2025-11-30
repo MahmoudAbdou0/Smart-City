@@ -3,12 +3,14 @@ import ComplaintCard from "./ComplaintCard";
 import Filter from "./Filter";
 import { useAllComplaints } from "../../hooks/useAllComplaints";
 import GlobalPreloader from "../../../../components/GlobalPreloader";
+import EmptyList from "./EmptyList";
 
 function MyComplaints() {
   const { complaints, isLoading } = useAllComplaints();
   console.log(complaints);
-
   if (isLoading) return <GlobalPreloader />;
+
+  if (complaints.length === 0) return <EmptyList msg="complaints" />;
 
   return (
     <motion.div
@@ -18,11 +20,11 @@ function MyComplaints() {
       transition={{ duration: 0.7, ease: "easeOut" }}
     >
       <div className="rounded-xl bg-white p-8 border border-primary-light/50 shadow-md">
-        <Filter />
+        {/* <Filter /> */}
         <section className="flex flex-col gap-4">
-          <ComplaintCard />
-          <ComplaintCard />
-          <ComplaintCard />
+          {complaints.map((complaint) => (
+            <ComplaintCard complaint={complaint} key={complaint?.id} />
+          ))}
         </section>
       </div>
     </motion.div>

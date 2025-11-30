@@ -7,7 +7,7 @@ export function useCreateSuggestion() {
     mutationKey: ["createSuggestion"],
     mutationFn: createSuggestion,
     onSuccess: () => {
-      toast.success("Suggestion created successfully!");
+      toast.success("Suggestion added successfully!");
     },
     onError: (error) => {
       toast.error(error.message);

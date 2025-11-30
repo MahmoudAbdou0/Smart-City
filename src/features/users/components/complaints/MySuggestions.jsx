@@ -2,12 +2,15 @@ import { motion } from "framer-motion";
 import SuggestionCard from "./SuggestionCard";
 import { useAllSuggestions } from "../../hooks/useAllSuggestions";
 import GlobalPreloader from "../../../../components/GlobalPreloader";
+import EmptyList from "./EmptyList";
 
 function MySuggestions() {
   const { suggestions, isLoading } = useAllSuggestions();
   console.log(suggestions);
 
   if (isLoading) return <GlobalPreloader />;
+
+  if (suggestions.length === 0) return <EmptyList msg="suggestions" />;
 
   return (
     <motion.div

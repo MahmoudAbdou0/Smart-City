@@ -5,6 +5,8 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useCreateSuggestion } from "../../hooks/useCreateSuggestion";
 import { useCreateComplaint } from "../../hooks/useCreateComplaint";
+import ImageInput from "./ImageInput";
+import { useAuth } from "../../../../context/AuthContext";
 
 function SubmitForm({
   msg,
@@ -14,32 +16,51 @@ function SubmitForm({
 }) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [location, setLocation] = useState("");
+  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState("");
 
+  const { user } = useAuth();
   const { mutate: addSuggestion, isLoading } = useCreateSuggestion();
   const { mutate: addComplaint, isLoading: isCreating } = useCreateComplaint();
 
   const loading = isLoading || isCreating;
 
+  function handleImageChange(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setImage(file);
+    setPreview(URL.createObjectURL(file));
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
+
     if (msg === "Suggestion") {
       if (!title || !desc) {
         toast.error("All fields must be completed before submitting.");
         return;
       }
-      try {
-        const data = { title, description: desc };
-        console.log(data);
-        addSuggestion(data);
-        // setContent("suggestions");
-      } catch (err) {
-        toast.error(err.message);
-      }
+
+      const data = { citizenId: user?.id, title, description: desc };
+      addSuggestion(data);
+      setContent("suggestions");
     } else {
-      if (!title || !desc) {
+      if (!title || !desc || !location || !image) {
         toast.error("All Field Required");
         return;
       }
+
+      const data = {
+        title,
+        description: desc,
+        location,
+        image,
+      };
+
+      addComplaint(data);
+      setContent("complaints");
     }
   }
   return (
@@ -67,16 +88,26 @@ function SubmitForm({
         value={desc}
         onChange={(e) => setDesc(e.target.value)}
       />
-      {/* إضافة location */}
-      {/* <FormInput
-        label="Location"
-        name="location"
-        type="text"
-        placeholder="Enter location"
-      /> */}
-
+      {msg === "Complaint" && (
+        <FormInput
+          label="Location"
+          name="location"
+          type="text"
+          placeholder="Enter location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+      )}
       {/* إضافة image */}
-      {/* <FormInput label="Image" name="image" type="file" accept="image/*" /> */}
+      {msg === "Complaint" && (
+        <ImageInput
+          label="Image"
+          name="image"
+          onChange={handleImageChange}
+          preview={preview}
+        />
+      )}
+
       <Button type="submit" style="gradient" disabled={loading}>
         {loading ? "Submitting..." : `Submit ${msg}`}
       </Button>

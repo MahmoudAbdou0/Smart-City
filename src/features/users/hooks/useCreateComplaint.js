@@ -4,12 +4,12 @@ import { toast } from "react-toastify";
 import { useAuth } from "../../../context/AuthContext";
 
 export function useCreateComplaint() {
-  const { user, token } = useAuth();
+  const { user } = useAuth();
   const { mutate, isLoading } = useMutation({
     mutationKey: ["createComplaint"],
-    mutationFn: (data) => createComplaint(user?.id, token, data),
+    mutationFn: (data) => createComplaint(user?.id, data),
     onSuccess: () => {
-      toast.success("Complaint created successfully!");
+      toast.success("Complaint added successfully!");
     },
     onError: (error) => {
       toast.error(error.message);
