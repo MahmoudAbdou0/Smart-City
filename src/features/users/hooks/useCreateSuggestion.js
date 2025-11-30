@@ -1,13 +1,15 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { createSuggestion } from "../../../services/apiSuggestions";
 
 export function useCreateSuggestion() {
+  const queryClient = useQueryClient();
   const { mutate, isLoading } = useMutation({
     mutationKey: ["createSuggestion"],
     mutationFn: createSuggestion,
     onSuccess: () => {
       toast.success("Suggestion added successfully!");
+      queryClient.invalidateQueries(["allSuggestions"]);
     },
     onError: (error) => {
       toast.error(error.message);
