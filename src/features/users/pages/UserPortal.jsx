@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../../../components/NavBar";
+import Footer from "../../../components/Footer";
+
 import GlobalPreloader from "../../../components/GlobalPreloader";
 
 function UserPortal() {
@@ -12,6 +14,7 @@ function UserPortal() {
           <Outlet />
         </main>
       </GlobalPreloader>
+      <Footer />
     </>
   );
 }
