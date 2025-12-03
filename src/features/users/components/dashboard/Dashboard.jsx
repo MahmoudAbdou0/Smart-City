@@ -30,10 +30,10 @@ const Dashboard = () => {
           <h3 className="text-lg font-semibold">Quick Actions</h3>
 
           <div className="grid grid-cols-2 gap-4 mt-4">
-            <QuickActionCard icon="📝" text="New Complaint" />
-            <QuickActionCard icon="💳" text="Pay Bills" />
-            <QuickActionCard icon="🔔" text="View Notifications" />
-            <QuickActionCard icon="⚙️" text="Update Profile" />
+            <QuickActionCard icon="complaint" text="New Complaint" />
+<QuickActionCard icon="bills" text="Pay Bills" />
+<QuickActionCard icon="notifications" text="View Notifications" />
+<QuickActionCard icon="profile" text="Update Profile" />
           </div>
         </div>
 
