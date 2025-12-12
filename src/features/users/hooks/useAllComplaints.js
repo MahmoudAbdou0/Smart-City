@@ -7,7 +7,7 @@ export function useAllComplaints() {
 
   const { data: complaints, isLoading } = useQuery({
     queryKey: ["allComplaints"],
-    queryFn: () => getAllComplaints(user?.id),
+    queryFn: getAllComplaints,
     onSuccess: (data) => {
       console.log(data);
     },
