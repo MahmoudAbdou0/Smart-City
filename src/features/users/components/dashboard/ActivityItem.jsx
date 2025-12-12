@@ -1,9 +1,9 @@
-import { Clock, CheckCircle2, Hourglass } from "lucide-react";
+import { Clock, CheckCircle2, Hourglass, FileText } from "lucide-react";
 
 const statusIcons = {
-  "In Progress": <Clock size={16} strokeWidth={1.5} />,
-  Completed: <CheckCircle2 size={16} strokeWidth={1.5} />,
-  "Under Review": <Hourglass size={16} strokeWidth={1.5} />,
+  "In Progress": <Clock size={18} strokeWidth={1.5} />,
+  Completed: <CheckCircle2 size={18} strokeWidth={1.5} />,
+  "Under Review": <Hourglass size={18} strokeWidth={1.5} />,
 };
 
 const statusStyles = {
@@ -14,14 +14,21 @@ const statusStyles = {
 
 const ActivityItem = ({ title, time, status }) => {
   return (
-    <div className="flex justify-between items-center py-3 border-b last:border-none">
-      <div>
-        <h4 className="font-medium">{title}</h4>
-        <p className="text-gray-500 text-sm">{time}</p>
+    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 gap-3">
+      <div className="flex items-center gap-4">
+        <div className="text-orange-500">
+          <FileText size={20} />
+        </div>
+        <div>
+          <h4 className="font-semibold text-gray-900 text-sm sm:text-base">
+            {title}
+          </h4>
+          <p className="text-gray-500 text-xs sm:text-sm">{time}</p>
+        </div>
       </div>
 
       <span
-        className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${statusStyles[status]}`}
+        className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap ${statusStyles[status]}`}
       >
         {statusIcons[status]} {status}
       </span>

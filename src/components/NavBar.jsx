@@ -38,23 +38,26 @@ function NavBar() {
             <NavLink
               to="notifications"
               className={({ isActive }) =>
-                `flex gap-2 items-center smooth-transition hover:scale-110 ${isActive ? "text-primary" : ""
+                `flex gap-2 items-center smooth-transition hover:scale-110 ${
+                  isActive ? "text-primary" : ""
                 }`
               }
             >
               <Bell size={20} />
             </NavLink>
 
-            <NavLink
-              to="profile"
-              className={({ isActive }) =>
-                `flex gap-2 items-center smooth-transition hover:scale-110 ${isActive ? "text-primary" : ""
-                }`
-              }
-            >
-              <User size={20} />
-            </NavLink>
-
+            {!isAdmin && (
+              <NavLink
+                to="profile"
+                className={({ isActive }) =>
+                  `flex gap-2 items-center smooth-transition hover:scale-110 ${
+                    isActive ? "text-primary" : ""
+                  }`
+                }
+              >
+                <User size={20} />
+              </NavLink>
+            )}
             <NavLink
               to="/login"
               className="smooth-transition hover:scale-110 "
@@ -81,9 +84,10 @@ function NavBar() {
                     to={`/${item.path}`}
                     end={item.end}
                     className={({ isActive }) =>
-                      `smooth-transition ${isActive
-                        ? "text-primary font-semibold"
-                        : "text-gray-700 hover:text-primary"
+                      `smooth-transition ${
+                        isActive
+                          ? "text-primary font-semibold"
+                          : "text-gray-700 hover:text-primary"
                       }`
                     }
                   >
@@ -105,16 +109,18 @@ function NavBar() {
                   <Bell size={20} />
                 </NavLink>
               </li>
-              <li className="hover:text-primary smooth-transition hover:scale-110">
-                <NavLink
-                  to="profile"
-                  className={({ isActive }) =>
-                    ` ${isActive ? "text-primary" : ""}`
-                  }
-                >
-                  <User size={20} />
-                </NavLink>
-              </li>
+              {!isAdmin && (
+                <li className="hover:text-primary smooth-transition hover:scale-110">
+                  <NavLink
+                    to="profile"
+                    className={({ isActive }) =>
+                      ` ${isActive ? "text-primary" : ""}`
+                    }
+                  >
+                    <User size={20} />
+                  </NavLink>
+                </li>
+              )}
               <li className="hover:text-primary smooth-transition hover:scale-110">
                 <NavLink to="/login" onClick={logout}>
                   <LogOut size={20} />
@@ -128,10 +134,11 @@ function NavBar() {
       {/* ✅ Mobile Menu تحت النافبار باستخدام z-index */}
       <div
         className={`absolute left-0 top-full w-full z-10 
-    ${isOpen
-            ? "animate-slideDown opacity-100 pointer-events-auto"
-            : "animate-slideUp opacity-0 pointer-events-none"
-          }`}
+    ${
+      isOpen
+        ? "animate-slideDown opacity-100 pointer-events-auto"
+        : "animate-slideUp opacity-0 pointer-events-none"
+    }`}
         aria-hidden={!isOpen}
       >
         <MobileMenu navItems={navItems} />
@@ -153,9 +160,10 @@ function MobileMenu({ navItems }) {
               to={`/${item.path}`}
               end={item.end}
               className={({ isActive }) =>
-                ` block px-4 py-2 rounded-xl smooth-transition ${isActive
-                  ? "bg-primary-light/25 text-primary font-semibold"
-                  : "text-gray-700 hover:text-primary hover:bg-primary-light/10"
+                ` block px-4 py-2 rounded-xl smooth-transition ${
+                  isActive
+                    ? "bg-primary-light/25 text-primary font-semibold"
+                    : "text-gray-700 hover:text-primary hover:bg-primary-light/10"
                 }`
               }
             >

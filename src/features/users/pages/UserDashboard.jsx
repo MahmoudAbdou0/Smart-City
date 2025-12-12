@@ -1,5 +1,7 @@
+import Dashboard from "../components/dashboard/Dashboard";
+
 function UserDashboard() {
-  return <div>User Dashboard</div>;
+  return <Dashboard />;
 }
 
 export default UserDashboard;

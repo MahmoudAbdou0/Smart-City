@@ -1,7 +1,7 @@
 import api from "./axiosInterceptors";
 
-export async function getAllComplaints(citizenId) {
-  const res = await api.get(`/api/complaints/my/${citizenId}`);
+export async function getAllComplaints() {
+  const res = await api.get(`/api/complaints/my`);
   return res.data;
 }
 

@@ -66,11 +66,13 @@ function SubmitForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full bg-white border border-primary-light/50 shadow p-6 rounded-2xl"
+      className="w-full bg-white border border-primary-light/50 shadow p-4 md:p-6 rounded-2xl"
     >
-      <header className="flex items-center mb-6 gap-3">
-        <MessageSquareIcon className={` text-2xl text-${color}`} />{" "}
-        <span className={` text-2xl `}>New {msg}s</span>
+      <header className="flex items-center mb-6 gap-2 md:gap-3">
+        <MessageSquareIcon className={` text-xl md:text-2xl text-${color}`} />{" "}
+        <span className={` text-lg md:text-2xl font-semibold md:font-normal`}>
+          New {msg}s
+        </span>
       </header>
       <FormInput
         label="Title"

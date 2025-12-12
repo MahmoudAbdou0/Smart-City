@@ -2,7 +2,7 @@
 import Select from "react-select";
 import { Clock, RefreshCw, Check, Lock } from "lucide-react";
 
-const StatusDropdown = ({ item, onUpdateStatus, }) => {
+const StatusDropdown = ({ item, onUpdateStatus }) => {
   if (!item) return null; // 🔥 منع الكسر لو item لسه محمّلش
 
   const getStatusColor = (status) => {
@@ -42,7 +42,7 @@ const StatusDropdown = ({ item, onUpdateStatus, }) => {
       options={customOptions}
       value={customOptions.find((opt) => opt.value === item?.status) || null}
       onChange={(selectedOption) => {
-        onUpdateStatus(item, selectedOption.value);
+        onUpdateStatus(item, selectedOption?.value);
       }}
       className={`text-xs font-medium rounded-md border transition-all duration-200 cursor-pointer min-w-[150px] ${getStatusColor(
         item?.status
