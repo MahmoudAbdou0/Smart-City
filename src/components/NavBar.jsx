@@ -1,6 +1,7 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { adminNavItems, userNavItems } from "../utils/constants";
 import { Bell, LogOut, Menu, User, User2, X } from "lucide-react";
+import logo from "../assets/logo.png";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
@@ -19,7 +20,7 @@ function NavBar() {
         <div className="container relative flex items-center justify-between ">
           <Link to="/" className="flex items-center gap-2">
             <img
-              src="/src/assets/logo.jpeg"
+              src={logo}
               alt="Website Logo"
               className="w-15 md:w-20"
             />

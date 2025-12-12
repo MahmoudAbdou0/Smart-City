@@ -30,80 +30,82 @@ function Signup() {
     <>
       <BackToHome />
       <WelcomeMsg msg="Let's Get Started" />
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="bg-white shadow-md shadow-black/25 border border-color rounded-lg max-w-sm m-auto p-6 my-10 smooth-transition"
-      >
-        <Input
-          label="Name"
-          name="name"
-          type="text"
-          register={register}
-          options={validations.name}
-          error={errors?.name?.message}
-        />
-        <Input
-          label="Email"
-          name="email"
-          type="text"
-          register={register}
-          options={validations.email}
-          error={errors?.email?.message}
-        />
-        <Input
-          label="Phone"
-          name="phone"
-          type="text"
-          register={register}
-          options={validations.phone}
-          error={errors?.phone?.message}
-        />
-        <Input
-          label="Address"
-          name="address"
-          type="text"
-          register={register}
-          options={validations.address}
-          error={errors?.address?.message}
-        />
-        <Input
-          label="National ID"
-          name="nationalId"
-          type="text"
-          register={register}
-          options={validations.nationalId}
-          error={errors?.nationalId?.message}
-        />
-        <Input
-          label="Password"
-          name="password"
-          type="password"
-          register={register}
-          options={validations.password}
-          error={errors?.password?.message}
-        />
-        <Input
-          label="Confirm Password"
-          name="confirmPassword"
-          type="password"
-          register={register}
-          options={validations.confirmPassword(watch)}
-          error={errors?.confirmPassword?.message}
-        />
-        <Button disabled={loading} style="gradient" type="submit" className="group">
-          {loading ? <SpinnerMini /> :
-            <span>
-              Sign Up
-              <ArrowRight size={18} className="inline ms-2 transition-transform duration-300 group-hover:translate-x-2" />
-            </span>}
-        </Button>
-        <p className="text-sm text-center">
-          Have an account?{" "}
-          <Link to="/login" className="text-primary">
-            Login
-          </Link>
-        </p>
-      </form>
+      <div className="container">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-white shadow-md shadow-black/25 border border-color rounded-lg max-w-sm m-auto p-6 my-10 smooth-transition"
+        >
+          <Input
+            label="Name"
+            name="name"
+            type="text"
+            register={register}
+            options={validations.name}
+            error={errors?.name?.message}
+          />
+          <Input
+            label="Email"
+            name="email"
+            type="text"
+            register={register}
+            options={validations.email}
+            error={errors?.email?.message}
+          />
+          <Input
+            label="Phone"
+            name="phone"
+            type="text"
+            register={register}
+            options={validations.phone}
+            error={errors?.phone?.message}
+          />
+          <Input
+            label="Address"
+            name="address"
+            type="text"
+            register={register}
+            options={validations.address}
+            error={errors?.address?.message}
+          />
+          <Input
+            label="National ID"
+            name="nationalId"
+            type="text"
+            register={register}
+            options={validations.nationalId}
+            error={errors?.nationalId?.message}
+          />
+          <Input
+            label="Password"
+            name="password"
+            type="password"
+            register={register}
+            options={validations.password}
+            error={errors?.password?.message}
+          />
+          <Input
+            label="Confirm Password"
+            name="confirmPassword"
+            type="password"
+            register={register}
+            options={validations.confirmPassword(watch)}
+            error={errors?.confirmPassword?.message}
+          />
+          <Button disabled={loading} style="gradient" type="submit" className="group">
+            {loading ? <SpinnerMini /> :
+              <span>
+                Sign Up
+                <ArrowRight size={18} className="inline ms-2 transition-transform duration-300 group-hover:translate-x-2" />
+              </span>}
+          </Button>
+          <p className="text-sm text-center">
+            Have an account?{" "}
+            <Link to="/login" className="text-primary">
+              Login
+            </Link>
+          </p>
+        </form>
+      </div>
       <Footer />
     </>
   );

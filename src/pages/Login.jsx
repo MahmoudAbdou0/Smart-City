@@ -27,44 +27,46 @@ function Login() {
     <>
       <BackToHome />
       <WelcomeMsg msg="Welcome Back" />
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="bg-white shadow-md shadow-black/25  border border-color rounded-lg max-w-sm m-auto p-6 my-10 smooth-transition"
-      >
-        <Input
-          label="National ID"
-          name="nationalId"
-          type="text"
-          register={register}
-          options={validations.nationalId}
-          error={errors?.nationalId?.message}
-        />
-        <Input
-          label="Password"
-          name="password"
-          type="password"
-          register={register}
-          options={validations.password}
-          error={errors?.password?.message}
-        />
-        {/* <Link to="#" className="text-primary text-sm underline">
+      <div className="container">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-white shadow-md shadow-black/25  border border-color rounded-lg max-w-sm mx-auto p-6 my-10 smooth-transition"
+        >
+          <Input
+            label="National ID"
+            name="nationalId"
+            type="text"
+            register={register}
+            options={validations.nationalId}
+            error={errors?.nationalId?.message}
+          />
+          <Input
+            label="Password"
+            name="password"
+            type="password"
+            register={register}
+            options={validations.password}
+            error={errors?.password?.message}
+          />
+          {/* <Link to="#" className="text-primary text-sm underline">
           Forgot Password?
         </Link> */}
-        <Button disabled={loading} style="gradient" type="submit" className="group">
-          {loading ? <SpinnerMini /> :
-            <span>
-              Sign In
-              <ArrowRight size={18} className="inline ms-2 transition-transform duration-300 group-hover:translate-x-2" />
-            </span>}
-          {/* <SpinnerMini /> */}
-        </Button>
-        <p className="text-sm text-center">
-          Don't have an account?{" "}
-          <Link to="/register" className="text-primary">
-            Create account
-          </Link>
-        </p>
-      </form>
+          <Button disabled={loading} style="gradient" type="submit" className="group">
+            {loading ? <SpinnerMini /> :
+              <span>
+                Sign In
+                <ArrowRight size={18} className="inline ms-2 transition-transform duration-300 group-hover:translate-x-2" />
+              </span>}
+            {/* <SpinnerMini /> */}
+          </Button>
+          <p className="text-sm text-center">
+            Don't have an account?{" "}
+            <Link to="/register" className="text-primary">
+              Create account
+            </Link>
+          </p>
+        </form>
+      </div>
       <Footer />
     </>
   );

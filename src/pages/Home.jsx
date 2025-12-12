@@ -57,7 +57,7 @@ const Home = () => {
 
         {!token && !user ? (
           <div className="flex gap-2">
-            <Button style="gradient" to="/register" className="bg-blue-600">
+            <Button style="gradient" to="/register" className="hidden sm:inline ">
               Register
             </Button>
             <Button style="light" to="/login">
@@ -103,8 +103,8 @@ const Home = () => {
               user?.role === "Admin"
                 ? "/admin"
                 : user?.role === "Citizen"
-                ? "/dashboard"
-                : "/login"
+                  ? "/dashboard"
+                  : "/login"
             }
             className="font-sans flex w-fit group"
           >
