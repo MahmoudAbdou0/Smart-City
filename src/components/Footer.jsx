@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
-import logo from "../assets/logo.jpeg";
+import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 
 const footerLinks = [
@@ -24,11 +24,11 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-8 py-8 lg:py-12 ">
 
                     {/* Logo & Description */}
-                    <div className="lg:col-span-1">
+                    <div className="lg:col-span-1 text-center">
                         <img
                             src={logo}
                             alt="Smart City Logo"
-                            className="w-32 h-32 object-contain mb-4"
+                            className="w-32 h-32 object-contain mx-auto"
                         />
                         <h3 className="text-[rgb(19,17,18)] mb-2">Smart City</h3>
                         <p className="text-gray-600 text-sm leading-relaxed">
@@ -37,7 +37,7 @@ const Footer = () => {
                     </div>
 
                     {/* Quick Links */}
-                    <div className="mt-8 lg:mt-10 text-start lg:text-center">
+                    <div className="mt-8 lg:mt-10 text-center">
                         <h4 className="text-[rgb(19,17,18)] mb-4">Quick Links</h4>
                         <ul className="space-y-2">
                             {footerLinks.map((link, i) => (
@@ -54,7 +54,7 @@ const Footer = () => {
                     </div>
 
                     {/* Services */}
-                    <div className="mt-8 lg:mt-10 text-start lg:text-center">
+                    <div className="mt-8 lg:mt-10 text-center">
                         <h4 className="text-[rgb(19,17,18)] mb-4">Services</h4>
                         <ul className="space-y-2">
 
@@ -67,25 +67,25 @@ const Footer = () => {
                     </div>
 
                     {/* Contact Info */}
-                    <div className="mt-8 lg:mt-10">
+                    <div className="mt-8 lg:mt-10 text-center">
                         <h4 className="text-[rgb(19,17,18)] mb-4">Contact Us</h4>
-                        <ul className="space-y-3">
-                            <li className="flex items-start gap-4 text-gray-600 text-sm">
+                        <ul className="space-y-3 ">
+                            <li className="flex items-center justify-center gap-4 text-gray-600 text-sm ">
                                 <MapPin className="h-4 w-4 text-[rgb(209,169,99)] mt-0.5 flex-shrink-0" />
                                 <span>Cairo, Egypt</span>
                             </li>
-                            <li className="flex items-center gap-4 text-gray-600 text-sm">
+                            <li className="flex items-center justify-center gap-4 text-gray-600 text-sm">
                                 <Phone className="h-4 w-4 text-[rgb(209,169,99)] flex-shrink-0" />
                                 <span>+20 123 456 7890</span>
                             </li>
-                            <li className="flex items-center gap-4 text-gray-600 text-sm">
+                            <li className="flex items-center justify-center gap-4 text-gray-600 text-sm">
                                 <Mail className="h-4 w-4 text-[rgb(209,169,99)] flex-shrink-0" />
                                 <span>info@smartcity.eg</span>
                             </li>
                         </ul>
 
                         {/* Social Media */}
-                        <div className="flex gap-3 mt-4">
+                        <div className="flex justify-center gap-3 mt-4">
                             {socialLinks.map((social, i) => (
                                 <a
                                     key={i}

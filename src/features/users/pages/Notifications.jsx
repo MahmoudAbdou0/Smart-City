@@ -21,7 +21,7 @@ const Notifications = () => {
     <>
       <NotificationHeader />
 
-      <div className="flex justify-between items-center my-4">
+      <div className="flex justify-between flex-col md:flex-row  items-center my-4">
         <NotificationTabs
           activeTab={activeTab}
           setActiveTab={setActiveTab}

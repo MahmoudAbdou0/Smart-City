@@ -7,14 +7,14 @@ const StatsCard = ({ icon, title, value, change, changeType = "positive" }) => {
     : "bg-red-100 text-red-600";
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-      <div className="flex justify-between items-start mb-4">
-        <span className="text-3xl">{icon}</span>
-        <span
+    <div className="bg-white/50 rounded-lg shadow-md p-4  text-center">
+      <div className="flex justify-center  mb-4 ">
+        <span className="text-3xl text-center">{icon}</span>
+        {/* <span
           className={`${changeColor} px-2 py-1 rounded text-xs font-semibold`}
         >
           {change}
-        </span>
+        </span> */}
       </div>
       <h4 className="text-gray-600 text-sm font-medium mb-2">{title}</h4>
       <p className="text-3xl font-bold text-gray-900">{value}</p>

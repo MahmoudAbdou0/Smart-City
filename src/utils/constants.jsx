@@ -1,9 +1,31 @@
-import { Activity, MessageSquare, TrendingUp, Users } from "lucide-react";
+import { Activity, FileText, Home, MessageSquare, TrendingUp, Users, Zap } from "lucide-react";
 
 export const userNavItems = [
-  { path: "dashboard", label: "Dashboard", end: true },
-  { path: "dashboard/complaints", label: "Complaints" },
-  { path: "dashboard/utilities", label: "Utilities" },
+  {
+    path: "dashboard",
+    label: (
+      <span className="flex items-center gap-1">
+        <Home className="h-4 w-4" /> Dashboard
+      </span>
+    ),
+    end: true
+  },
+  {
+    path: "dashboard/complaints",
+    label: (
+      <span className="flex items-center gap-1">
+        <FileText className="h-4 w-4" /> Complaints & Suggestions
+      </span>
+    )
+  },
+  {
+    path: "dashboard/utilities",
+    label: (
+      <span className="flex items-center gap-1">
+        <Zap className="h-4 w-4" /> Utilities
+      </span>
+    )
+  },
   // { path: "dashboard/notifications", label: "Notifications" },
 ];
 
@@ -28,7 +50,7 @@ export const adminNavItems = [
   {
     path: "admin/complaints", label: (
       <span className="flex items-center gap-1">
-        <MessageSquare className="h-4 w-4" /> Complaints
+        <MessageSquare className="h-4 w-4" /> Complaints & Suggestions
       </span>
     )
   },

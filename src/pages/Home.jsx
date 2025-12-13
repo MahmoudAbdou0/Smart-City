@@ -181,7 +181,13 @@ const Home = () => {
 
           <Button
             style="gradient"
-            to="/login"
+            to={
+              user?.role === "Admin"
+                ? "/admin"
+                : user?.role === "Citizen"
+                  ? "/dashboard"
+                  : "/login"
+            }
             className="font-sans text-lg border-none group flex items-center mx-auto w-fit px-8"
           >
             Start Your Journey

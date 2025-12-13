@@ -13,7 +13,7 @@ const placeHolder = {
 };
 function SubmitNew({ setContent }) {
   return (
-    <div className="flex gap-6 flex-col md:flex-row">
+    <div className="flex gap-6 flex-col lg:flex-row overflow-x-hidden">
       <motion.div
         initial={{ opacity: 0, x: -100 }}
         whileInView={{ opacity: 1, x: 0 }}

@@ -4,6 +4,7 @@ import SubmitNew from "../components/complaints/SubmitNew";
 import MyComplaints from "../components/complaints/MyComplaints";
 import MySuggestions from "../components/complaints/MySuggestions";
 import Tabs from "../../../components/Tabs";
+import { MessageCircleWarning } from "lucide-react";
 
 function UserComplaints() {
   const [content, setContent] = useState("new");
@@ -17,7 +18,10 @@ function UserComplaints() {
   return (
     <div>
       <header>
-        <h1 className="text-4xl ">Complaints & Suggestions</h1>
+        <h1 className="md:text-4xl text-2xl flex items-center gap-3">
+          <MessageCircleWarning className="w-8 h-8 text-amber-600" />
+          Complaints & Suggestions
+        </h1>
         <p className="mt-2 text-gray-700">
           Submit feedback and track your requests
         </p>

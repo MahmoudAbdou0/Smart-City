@@ -4,15 +4,14 @@ import StatsCard from "./StatsCard";
 import QuickActionCard from "./QuickActionCard";
 import ProfileCompletion from "./ProfileCompletion";
 import ActivityItem from "./ActivityItem";
+import { UserRound } from "lucide-react";
+import useDashboardStats from "../../hooks/useDashboard";
+import GlobalPreloader from "../../../../components/GlobalPreloader";
 
 const Dashboard = () => {
   const { user } = useAuth();
-  const [stats, setStats] = useState({
-    complaints: { count: 2, change: "+1" },
-    bills: { count: 1, change: "-2" },
-    notifications: { count: 5, change: "+3" },
-    profileComplete: { count: "85%", change: "+5%" },
-  });
+
+  const { stats, loading } = useDashboardStats(user?.id);
 
   const [recentActivities] = useState([
     {
@@ -25,10 +24,11 @@ const Dashboard = () => {
   ]);
 
   return (
-    <div className="p-4 sm:p-6 md:p-10 bg-gray-50 min-h-screen w-full">
+    <div className="py-4 sm:py-6 ">
       {/* Greeting */}
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
+        <h1 className="md:text-4xl text-2xl flex items-center gap-3">
+          <UserRound className="w-8 h-8 text-amber-600" />
           Welcome Back, {user?.name || "User"}
         </h1>
         <p className="text-gray-500 text-sm sm:text-base mt-1">
@@ -37,38 +37,34 @@ const Dashboard = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4 mb-8">
         <StatsCard
           icon="📄"
           title="Active Complaints"
-          value={stats.complaints.count}
-          change={stats.complaints.change}
+          value={loading ? <GlobalPreloader /> : stats.complaints.count}
         />
+
         <StatsCard
           icon="⚡"
           title="Pending Bills"
-          value={stats.bills.count}
-          change={stats.bills.change}
-          changeType={
-            stats.bills.change.startsWith("-") ? "negative" : "positive"
-          }
+          value={loading ? "..." : stats.bills.count}
         />
+
         <StatsCard
           icon="🔔"
           title="Notifications"
-          value={stats.notifications.count}
-          change={stats.notifications.change}
+          value={loading ? "..." : stats.notifications.count}
         />
+
         <StatsCard
-          icon="👤"
-          title="Profile Complete"
-          value={stats.profileComplete.count}
-          change={stats.profileComplete.change}
+          icon="💡"
+          title="Suggestions"
+          value={loading ? "..." : stats.suggestions.count}
         />
       </div>
 
       {/* Quick Actions + Profile */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3  gap-6 mb-8">
         {/* Quick Actions */}
         <div className="lg:col-span-2 bg-white shadow-sm rounded-lg p-6">
           <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-6">
@@ -84,7 +80,7 @@ const Dashboard = () => {
         </div>
 
         {/* Profile Completion */}
-        <ProfileCompletion progress={85} />
+        {/* <ProfileCompletion progress={85} /> */}
       </div>
 
       {/* Recent Activity */}
@@ -93,9 +89,9 @@ const Dashboard = () => {
           <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
             ⏱️ Recent Activity
           </h3>
-          <button className="text-orange-600 hover:text-orange-700 font-semibold text-sm transition-colors">
+          {/* <button className="text-orange-600 hover:text-orange-700 font-semibold text-sm transition-colors">
             View All
-          </button>
+          </button> */}
         </div>
 
         <div className="space-y-1 divide-y divide-gray-100">

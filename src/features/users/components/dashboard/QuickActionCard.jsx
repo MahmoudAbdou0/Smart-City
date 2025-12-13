@@ -9,10 +9,10 @@ const iconMap = {
 };
 
 const actionRoutes = {
-  "New Complaint": "/user/complaints",
-  "Pay Bills": "/user/utilities",
-  "View Notifications": "/user/notifications",
-  "Update Profile": "/user/profile",
+  "New Complaint": "complaints",
+  "Pay Bills": "utilities",
+  "View Notifications": "notifications",
+  "Update Profile": "profile",
 };
 
 const QuickActionCard = ({ icon, text }) => {
@@ -28,7 +28,7 @@ const QuickActionCard = ({ icon, text }) => {
   return (
     <button
       onClick={handleClick}
-      className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow text-center cursor-pointer hover:border-orange-300"
+      className="bg-white border border-color rounded-lg p-6 hover:shadow-md smooth-transition text-center cursor-pointer "
     >
       <div className="flex justify-center mb-3">{iconMap[icon]}</div>
       <p className="text-gray-700 font-medium">{text}</p>

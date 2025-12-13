@@ -2,7 +2,7 @@
 // SearchFilter.jsx
 export default function SearchFilter({ searchText, onSearchChange, statusFilter, onStatusChange }) {
     return (
-        <div className="flex flex-col lg:flex-row gap-2 items-end">
+        <div className="flex sm:flex-row md:flex-col lg:flex-row gap-2 items-end">
 
             {/* Search Input */}
             <input

@@ -20,8 +20,8 @@ export default function AdminPanel({
             <div className="bg-white/60 border border-accent-light/20 rounded-lg py-6 px-3 shadow-md">
 
                 {/* Header */}
-                <div className="flex justify-between items-center mb-10 px-3">
-                    <h2 className="text-3xl flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row gap-6 justify-between items-center mb-10 px-3">
+                    <h2 className="text-2xl sm:text-3xl flex items-center gap-4">
                         {icon}
                         {title}
                     </h2>

@@ -6,6 +6,7 @@ import IssueCTA from "../components/utilities/IssueCTA";
 import { useAuth } from "../../../context/AuthContext";
 import { getMyBills, payBill } from "../../../services/apiBills";
 import GlobalPreloader from "../../../components/GlobalPreloader";
+import { Droplets } from "lucide-react";
 
 const STAT_CARDS = [
   { title: "Total This Month", value: 850, delta: "-12%", trend: "down" },
@@ -160,7 +161,11 @@ function Utilities() {
     <>
       <div className="p-4 space-y-4">
         <div>
-          <h1 className="text-3xl font-semibold text-slate-900">Smart Utilities</h1>
+          <h1 className="md:text-4xl text-2xl flex items-center gap-3">
+            <Droplets className="w-8 h-8 text-amber-600" />
+            Smart Utilities
+          </h1>
+
           <p className="text-gray-500 mt-1">Monitor consumption and manage your utility bills</p>
         </div>
 

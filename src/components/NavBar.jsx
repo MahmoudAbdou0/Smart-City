@@ -1,8 +1,8 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { adminNavItems, userNavItems } from "../utils/constants";
-import { Bell, LogOut, Menu, User, User2, X } from "lucide-react";
+import { Bell, LogOut, Menu, User, X } from "lucide-react";
 import logo from "../assets/logo.png";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 function NavBar() {
@@ -13,6 +13,18 @@ function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const { logout } = useAuth();
+
+  const menuRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="relative z-20">
@@ -38,8 +50,7 @@ function NavBar() {
             <NavLink
               to="notifications"
               className={({ isActive }) =>
-                `flex gap-2 items-center smooth-transition hover:scale-110 ${
-                  isActive ? "text-primary" : ""
+                `flex gap-2 items-center smooth-transition hover:scale-110 ${isActive ? "text-primary" : ""
                 }`
               }
             >
@@ -50,8 +61,7 @@ function NavBar() {
               <NavLink
                 to="profile"
                 className={({ isActive }) =>
-                  `flex gap-2 items-center smooth-transition hover:scale-110 ${
-                    isActive ? "text-primary" : ""
+                  `flex gap-2 items-center smooth-transition hover:scale-110 ${isActive ? "text-primary" : ""
                   }`
                 }
               >
@@ -84,10 +94,9 @@ function NavBar() {
                     to={`/${item.path}`}
                     end={item.end}
                     className={({ isActive }) =>
-                      `smooth-transition ${
-                        isActive
-                          ? "text-primary font-semibold"
-                          : "text-gray-700 hover:text-primary"
+                      `smooth-transition ${isActive
+                        ? "text-primary font-semibold"
+                        : "text-gray-700 hover:text-primary"
                       }`
                     }
                   >
@@ -133,15 +142,16 @@ function NavBar() {
 
       {/* ✅ Mobile Menu تحت النافبار باستخدام z-index */}
       <div
+        ref={menuRef}
+        id="mobile-menu"
         className={`absolute left-0 top-full w-full z-10 
-    ${
-      isOpen
-        ? "animate-slideDown opacity-100 pointer-events-auto"
-        : "animate-slideUp opacity-0 pointer-events-none"
-    }`}
+    ${isOpen
+            ? "animate-slideDown opacity-100 pointer-events-auto"
+            : "animate-slideUp opacity-0 pointer-events-none"
+          }`}
         aria-hidden={!isOpen}
       >
-        <MobileMenu navItems={navItems} />
+        <MobileMenu navItems={navItems} setIsOpen={setIsOpen} />
       </div>
     </div>
   );
@@ -149,7 +159,7 @@ function NavBar() {
 
 export default NavBar;
 
-function MobileMenu({ navItems }) {
+function MobileMenu({ navItems, setIsOpen }) {
   return (
     <div className="shadow-md shadow-black/10 rounded-b-xl bg-white w-[80%] mx-auto top-full flex flex-col py-5 px-5 lg:hidden">
       <nav className="lg:hidden block text-gray-700">
@@ -159,11 +169,11 @@ function MobileMenu({ navItems }) {
               key={item.path}
               to={`/${item.path}`}
               end={item.end}
+              onClick={() => setIsOpen(false)}
               className={({ isActive }) =>
-                ` block px-4 py-2 rounded-xl smooth-transition ${
-                  isActive
-                    ? "bg-primary-light/25 text-primary font-semibold"
-                    : "text-gray-700 hover:text-primary hover:bg-primary-light/10"
+                ` block px-4 py-2 rounded-xl smooth-transition ${isActive
+                  ? "bg-primary-light/25 text-primary font-semibold"
+                  : "text-gray-700 hover:text-primary hover:bg-primary-light/10"
                 }`
               }
             >
