@@ -1,16 +1,126 @@
-# React + Vite
+# 🏙️ Smart City System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Smart City System is a modern web-based platform designed to improve communication between citizens and city administration by centralizing essential city services into a single, user-friendly system.
 
-Currently, two official plugins are available:
+The platform provides two main interfaces:
+- **Citizen Portal**
+- **Admin Dashboard**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+It was developed as a **graduation project** under the **Digital Egypt Pioneers Initiative (DEPI)**.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Live Demo
+🌐 Website:  
+https://smartcitywebsite.runasp.net/
 
-## Expanding the ESLint configuration
+🔌 API Documentation (Swagger):  
+http://smartcity.tryasp.net/swagger/index.html
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🎨 UI/UX Design (Figma):  
+https://barn-wise-59324304.figma.site/
+
+---
+
+## 🔐 Try the Admin Experience
+Use the following demo credentials to explore the admin dashboard:
+
+- **National ID:** 20304020304050  
+- **Password:** Admin123  
+
+---
+
+> Homepage Preview  
+<!-- Replace the image path with your actual screenshot -->
+![Smart City Homepage](src/assets/homepage.jpg)
+
+---
+
+## 📌 System Overview
+
+### 👤 Citizen Features
+- Submit complaints and suggestions
+- Track ticket status
+- View billing and utilities
+- Receive real-time notifications
+- Follow updates through a simple and intuitive user journey
+
+### 🛠️ Admin Features
+- Dashboard with system statistics and insights
+- User management and monitoring
+- Full control over complaints and suggestions lifecycle
+- Ticket status management
+- Notification system to communicate with citizens
+- Data-driven visibility to support decision-making
+
+---
+
+## 🧩 Frontend Responsibilities
+The frontend focuses on delivering a clean, responsive, and scalable user experience:
+
+- UI design implementation from scratch
+- Responsive layout using mobile-first approach
+- Component-based architecture with React
+- API integration and authentication handling
+- Performance optimization
+- Smooth animations and transitions
+- Consistent Egyptian-inspired visual identity
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- **React**
+- **Context API**
+- **TailwindCSS**
+- **Framer Motion**
+- **Axios**
+- **React Query**
+- **Lucide React**
+- **React Toastify**
+- **SweetAlert2**
+
+### Backend
+- RESTful APIs
+- JWT Authentication
+- Swagger for API documentation
+
+---
+
+## 🔄 API Integration
+- All API endpoints are documented using **Swagger**
+- Axios is used for HTTP communication
+- Interceptors handle authentication tokens and error responses
+
+API Docs:  
+http://smartcity.tryasp.net/swagger/index.html
+
+---
+
+## 📈 Key Highlights
+- Fully responsive design
+- Clean and intuitive UX
+- Role-based access (Citizen / Admin)
+- Real-time notifications
+- Scalable component structure
+- Performance-optimized frontend
+
+---
+
+## 📦 Installation & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/a7medsobih/Smart-City.git
+
+# Navigate to project directory
+cd Smart-City
+
+# Install dependencies
+npm install
+
+# Run the project
+npm run dev
+
+
